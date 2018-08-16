@@ -32,10 +32,7 @@ function getDiceValue() {
     return parseInt(diceValue);
 }
 
-$("#g-score-0").text("0"); // change it to 0
-$("#g-score-1").text("0");
-$("#current-score-0").text("0");
-$("#current-score-1").text("0");
+reset();
 
 $(document).ready(function() {
     $("#roll-dice").click(function() {
@@ -87,13 +84,7 @@ $(document).ready(function() {
             if (scores[activePlayer] >= 10) {
                 $(".dice").addClass("inactive");
 
-                //reset all scores
-                $("#g-score-0").text("0");
-                $("#g-score-1").text("0");
-                $("#current-score-0").text("0");
-                $("#current-score-1").text("0");
-                currentScore = 0;
-                scores = [0, 0];
+                reset();
 
                 //winner pop-up window
                 $(".popup").css("opacity", "1");
@@ -137,22 +128,14 @@ $(document).ready(function() {
         $("#current-score-0").text("0");
         $("#current-score-1").text("0");
     }
-
-    // CREATE A NEW PLAYER
-    $(".btn-ghost").click(function() {
-        $(".player-container-2").css("display", "block");
-        var addPlayerThree = prompt("Enter a name:");
-
-        if (addPlayerThree != null) {
-            alert("Player added successfully!");
-            $(".player-container-2 .player-name").text(addPlayerThree);
-        }
-    });
 });
 
-// // CONSTRUCTOR
-// var Player = {
-//     name: name,
-//     currScore: [],
-//     globScore: []
-// };
+function reset() {
+    //reset all scores
+    $("#g-score-0").text("0");
+    $("#g-score-1").text("0");
+    $("#current-score-0").text("0");
+    $("#current-score-1").text("0");
+    currentScore = 0;
+    scores = [0, 0];
+}
