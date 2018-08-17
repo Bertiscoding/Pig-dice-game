@@ -67,7 +67,6 @@ Game.prototype.turn = function() {
 
     // add active class to current player
     $(".player-container-" + this.currentPlayer.id).addClass("active");
-    console.log("CURRENT PLAYER", this.currentPlayer);
     return this.currentPlayer;
 };
 
@@ -144,9 +143,11 @@ Game.prototype.holdDice = function() {
         $(".popup").css("visibility", "visible");
 
         var winnerName = this.currentPlayer.name;
+        $(".winner-name").css("-webkit-animation:", "fadein 4s");
+        $(".winner-name").css("animation:", "fadein 4s");
         $(".winner-name").text(winnerName);
-        console.log("WINNER NAME:", winnerName);
 
+        //reset all scores
         this.players.forEach(function(player) {
             player.reset();
         });

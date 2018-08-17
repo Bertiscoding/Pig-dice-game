@@ -310,8 +310,8 @@ button:focus {
     margin: 40px 0;
     font-size: 400%;
     font-weight: 700;
-    -webkit-animation: fadein 4s;
-    animation: fadein 4s;
+    /* -webkit-animation: fadein 4s;
+    animation: fadein 4s; */
 }
 
 @keyframes fadein {
