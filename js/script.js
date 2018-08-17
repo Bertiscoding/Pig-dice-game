@@ -28,11 +28,15 @@ var activePlayer = 0; // 0 is first player, 1 is second player
 function getDiceValue() {
     var displayDice = $(".dice:not(.inactive)");
     var diceValue = displayDice.attr("data-value");
+    console.log("DATA VALUE");
 
     return parseInt(diceValue);
 }
 
-reset();
+$("#g-score-0").text("0"); // change it to 0
+$("#g-score-1").text("0");
+$("#current-score-0").text("0");
+$("#current-score-1").text("0");
 
 $(document).ready(function() {
     $("#roll-dice").click(function() {
@@ -40,6 +44,7 @@ $(document).ready(function() {
             var dice = getDiceValue();
 
             if (dice > 1) {
+                console.log(dice);
                 // add score
                 currentScore += dice; // currentScore = currentScore + dice
                 // setting the current score
@@ -67,8 +72,10 @@ $(document).ready(function() {
                 shuffleCounter++;
                 if (currentActive) currentActive.toggleClass("inactive");
                 var random = Math.floor(Math.random() * 6) + 1;
+                console.log("random number: ", random);
                 currentActive = $(".dice:nth-child(" + (random + 1) + ")");
                 currentActive.toggleClass("inactive");
+                console.log(currentActive);
             }
         }, 200);
         $(".dice").addClass("inactive");
@@ -84,7 +91,13 @@ $(document).ready(function() {
             if (scores[activePlayer] >= 10) {
                 $(".dice").addClass("inactive");
 
-                reset();
+                //reset all scores
+                $("#g-score-0").text("0");
+                $("#g-score-1").text("0");
+                $("#current-score-0").text("0");
+                $("#current-score-1").text("0");
+                currentScore = 0;
+                scores = [0, 0];
 
                 //winner pop-up window
                 $(".popup").css("opacity", "1");
@@ -104,6 +117,7 @@ $(document).ready(function() {
         $(".popup").css("opacity", "0");
         $(".popup").css("visibility", "hidden");
         $(".placeholder").css("display", "block");
+        $(".dice").hasClass("inactive");
     });
 
     $(".popup-close").click(function() {
@@ -129,13 +143,3 @@ $(document).ready(function() {
         $("#current-score-1").text("0");
     }
 });
-
-function reset() {
-    //reset all scores
-    $("#g-score-0").text("0");
-    $("#g-score-1").text("0");
-    $("#current-score-0").text("0");
-    $("#current-score-1").text("0");
-    currentScore = 0;
-    scores = [0, 0];
-}
